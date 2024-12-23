@@ -101,7 +101,7 @@ h1 {
     text-align: center;
 }
 </style>
-<h1>📝 MD Tutorials: Spelling Bee Picker</h1>
+<h1>📝 MD Tutorials: 3rd Annual Spelling Bee Competition</h1>
 """, unsafe_allow_html=True)
 
 # Add an app description
