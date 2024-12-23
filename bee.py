@@ -158,7 +158,7 @@ if st.button("Next Round"):
     st.info(f"Moved to Round {st.session_state['round'][selected_grade]}.")
 
 # Reset words, contestants, and rounds
-if st.sidebar.button("Reset Game"):
+if st.sidebar.button("Reset"):
     st.session_state["used_words"] = {grade: [] for grade in word_lists.keys()}
     st.session_state["contestants"] = {grade: [] for grade in word_lists.keys()}
     st.session_state["round"] = {grade: 1 for grade in word_lists.keys()}
