@@ -128,4 +128,8 @@ if st.button("Reset Game"):
     st.session_state["used_words"] = {grade: [] for grade in word_lists.keys()}
     st.session_state["contestants"] = {grade: [] for grade in word_lists.keys()
 
+if st.button("Reset Game"):
+    st.session_state["used_words"] = {grade: [] for grade in word_lists.keys()}
+    st.session_state["contestants"] = {grade: [] for grade in word_lists.keys()
+
     st.info("All word lists have been reset.")
