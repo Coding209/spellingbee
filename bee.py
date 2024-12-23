@@ -108,8 +108,7 @@ h1 {
 # Add an app description
 st.markdown("""
 <div style="font-family: Arial; font-size: 16px; margin-bottom: 30px;">
-    Welcome to the Spelling Bee Word Picker! This app helps you organize and run a spelling bee with ease.<br>
-    Choose a grade, add contestants, and pick words for each round.
+    This application streamlines organizing and managing a spelling bee competition. Select a grade, register contestants, and efficiently assign words for each round.
 </div>
 """, unsafe_allow_html=True)
 
@@ -165,6 +164,7 @@ if st.sidebar.button("Reset Game"):
     st.session_state["round"] = {grade: 1 for grade in word_lists.keys()}
     st.session_state["round_history"] = {grade: {} for grade in word_lists.keys()}
     st.sidebar.success("Game has been reset.")
+
 
 
 
