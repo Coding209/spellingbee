@@ -156,7 +156,9 @@ if st.sidebar.button("Reset Game"):
     st.session_state["used_words"] = {grade: [] for grade in word_lists.keys()}
     st.session_state["contestants"] = {grade: [] for grade in word_lists.keys()}
     st.session_state["round"] = {grade: 1 for grade in word_lists.keys()}
-    st.session_state["round_history"] = {grade: {} for grade in word
+    st.session_state["round_history"] = {grade: {} for grade in word_lists.keys()}
+    st.info("Game has been reset.")
+
 
 
 
