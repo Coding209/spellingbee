@@ -94,7 +94,7 @@ if "round_history" not in st.session_state:
     st.session_state["round_history"] = {grade: {} for grade in word_lists.keys()}
 
 # Streamlit app title
-st.title("Spelling Bee Word Picker")
+st.title("MDT Spelling Bee Word Picker")
 
 # Select grade
 selected_grade = st.selectbox("Select Grade:", options=list(word_lists.keys()))
