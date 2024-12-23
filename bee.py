@@ -135,29 +135,8 @@ if st.button("Assign Words for Current Round"):
         st.session_state["round_history"][selected_grade][current_round] = assigned_words
 
         st.success(f"Round {current_round} Words Assigned:")
-        for i, word in enumerate(assigned_words, start=1):
-            st.write(f"Contestant {i}: {word}")
-    else:
-        st.warning("Not enough words available to assign to all contestants.")
+        for i
 
-# Display round history
-st.subheader("Round History")
-if selected_grade in st.session_state["round_history"]:
-    for round_number, words in st.session_state["round_history"][selected_grade].items():
-        st.markdown(f"**Round {round_number}:** {', '.join(words)}")
-
-# Progress to the next round
-if st.button("Next Round"):
-    st.session_state["round"][selected_grade] += 1
-    st.info(f"Moved to Round {st.session_state['round'][selected_grade]}.")
-
-# Reset words, contestants, and rounds
-if st.sidebar.button("Reset Game"):
-    st.session_state["used_words"] = {grade: [] for grade in word_lists.keys()}
-    st.session_state["contestants"] = {grade: [] for grade in word_lists.keys()}
-    st.session_state["round"] = {grade: 1 for grade in word_lists.keys()}
-    st.session_state["round_history"] = {grade: {} for grade in word_lists.keys()}
-    st.info("Game has been reset.")
 
 
 
