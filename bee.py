@@ -93,11 +93,27 @@ if "round" not in st.session_state:
 if "round_history" not in st.session_state:
     st.session_state["round_history"] = {grade: {} for grade in word_lists.keys()}
 
-# Streamlit app title
-st.title("MDT Spelling Bee Word Picker")
+# Streamlit app title with a logo
+st.markdown("""<style>
+h1 {
+    color: #2b6cb0;
+    font-family: 'Arial';
+    text-align: center;
+}
+</style>
+<h1>📝 MD Tutorials: Spelling Bee Picker</h1>
+""", unsafe_allow_html=True)
 
-# Select grade
-selected_grade = st.selectbox("Select Grade:", options=list(word_lists.keys()))
+# Add an app description
+st.markdown("""
+### Welcome to the Spelling Bee Word Picker!
+This app helps you organize and run a spelling bee with ease. Choose a grade, add contestants, and pick words for each round.
+""")
+
+# Sidebar for grade and customization
+st.sidebar.header("Customize Spelling Bee")
+selected_grade = st.sidebar.selectbox("Select Grade:", options=list(word_lists.keys()))
+st.sidebar.markdown("You can reset the game or customize the rounds here.")
 
 # Input number of contestants
 num_contestants = st.number_input("Enter number of contestants for this grade:", min_value=1, step=1)
@@ -128,7 +144,7 @@ if st.button("Assign Words for Current Round"):
 st.subheader("Round History")
 if selected_grade in st.session_state["round_history"]:
     for round_number, words in st.session_state["round_history"][selected_grade].items():
-        st.write(f"Round {round_number}: {', '.join(words)}")
+        st.markdown(f"**Round {round_number}:** {', '.join(words)}")
 
 # Progress to the next round
 if st.button("Next Round"):
@@ -136,12 +152,12 @@ if st.button("Next Round"):
     st.info(f"Moved to Round {st.session_state['round'][selected_grade]}.")
 
 # Reset words, contestants, and rounds
-if st.button("Reset Game"):
+if st.sidebar.button("Reset Game"):
     st.session_state["used_words"] = {grade: [] for grade in word_lists.keys()}
     st.session_state["contestants"] = {grade: [] for grade in word_lists.keys()}
     st.session_state["round"] = {grade: 1 for grade in word_lists.keys()}
-    st.session_state["round_history"] = {grade: {} for grade in word_lists.keys()}
-    st.info("Game has been reset.")
+    st.session_state["round_history"] = {grade: {} for grade in word
+
 
 
 
