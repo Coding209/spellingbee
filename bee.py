@@ -99,6 +99,7 @@ h1 {
     color: #2b6cb0;
     font-family: 'Arial';
     text-align: center;
+    margin-bottom: 20px;
 }
 </style>
 <h1>📝 MD Tutorials: 3rd Annual Spelling Bee Competition</h1>
@@ -106,17 +107,23 @@ h1 {
 
 # Add an app description
 st.markdown("""
-### Welcome to the Spelling Bee Word Picker!
-This app helps you organize and run a spelling bee with ease. Choose a grade, add contestants, and pick words for each round.
-""")
+<div style="text-align: center; font-family: Arial; font-size: 16px; margin-bottom: 30px;">
+    Welcome to the Spelling Bee Word Picker! This app helps you organize and run a spelling bee with ease.<br>
+    Choose a grade, add contestants, and pick words for each round.
+</div>
+""", unsafe_allow_html=True)
 
 # Sidebar for grade and customization
 st.sidebar.header("Customize Spelling Bee")
 selected_grade = st.sidebar.selectbox("Select Grade:", options=list(word_lists.keys()))
-st.sidebar.markdown("You can reset the game or customize the rounds here.")
+st.sidebar.markdown("""<div style="font-size: 14px;">
+You can reset the game or customize the rounds here.
+</div>""", unsafe_allow_html=True)
 
 # Input number of contestants
-num_contestants = st.number_input("Enter number of contestants for this grade:", min_value=1, step=1)
+st.subheader("Setup Contestants")
+st.markdown("Enter the number of contestants for the selected grade.")
+num_contestants = st.number_input("Number of contestants:", min_value=1, step=1, key="contestants_input")
 
 # Assign words for the current round
 if st.button("Assign Words for Current Round"):
@@ -144,7 +151,7 @@ if st.button("Assign Words for Current Round"):
 st.subheader("Round History")
 if selected_grade in st.session_state["round_history"]:
     for round_number, words in st.session_state["round_history"][selected_grade].items():
-        st.markdown(f"**Round {round_number}:** {', '.join(words)}")
+        st.markdown(f"<div style='margin-bottom: 10px;'><strong>Round {round_number}:</strong> {', '.join(words)}</div>", unsafe_allow_html=True)
 
 # Progress to the next round
 if st.button("Next Round"):
@@ -158,4 +165,5 @@ if st.sidebar.button("Reset Game"):
     st.session_state["round"] = {grade: 1 for grade in word_lists.keys()}
     st.session_state["round_history"] = {grade: {} for grade in word_lists.keys()}
     st.sidebar.success("Game has been reset.")
+
 
