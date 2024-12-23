@@ -153,22 +153,9 @@ if st.button("Next Round"):
 
 # Reset words, contestants, and rounds
 if st.sidebar.button("Reset Game"):
-    confirm_reset = st.sidebar.checkbox("Confirm reset")
-    if confirm_reset:
-        st.session_state["used_words"] = {grade: [] for grade in word_lists.keys()}
-        st.session_state["contestants"] = {grade: [] for grade in word_lists.keys()}
-        st.session_state["round"] = {grade: 1 for grade in word_lists.keys()}
-        st.session_state["round_history"] = {grade: {} for grade in word_lists.keys()}
-        st.sidebar.success("Game has been reset.")
-    else:
-        st.sidebar.warning("Check 'Confirm reset' to reset the game.")
-
-
-
-
-
-
-
-
-
+    st.session_state["used_words"] = {grade: [] for grade in word_lists.keys()}
+    st.session_state["contestants"] = {grade: [] for grade in word_lists.keys()}
+    st.session_state["round"] = {grade: 1 for grade in word_lists.keys()}
+    st.session_state["round_history"] = {grade: {} for grade in word_lists.keys()}
+    st.sidebar.success("Game has been reset.")
 
