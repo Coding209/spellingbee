@@ -90,6 +90,8 @@ if "contestants" not in st.session_state:
     st.session_state["contestants"] = {grade: [] for grade in word_lists.keys()}
 if "round" not in st.session_state:
     st.session_state["round"] = {grade: 1 for grade in word_lists.keys()}
+if "round_history" not in st.session_state:
+    st.session_state["round_history"] = {grade: {} for grade in word_lists.keys()}
 
 # Streamlit app title
 st.title("Spelling Bee Word Picker")
@@ -112,11 +114,21 @@ if st.button("Assign Words for Current Round"):
         st.session_state["used_words"][selected_grade].extend(assigned_words)
         st.session_state["contestants"][selected_grade] = assigned_words
 
-        st.success(f"Round {st.session_state['round'][selected_grade]} Words Assigned:")
+        # Save to round history
+        current_round = st.session_state["round"][selected_grade]
+        st.session_state["round_history"][selected_grade][current_round] = assigned_words
+
+        st.success(f"Round {current_round} Words Assigned:")
         for i, word in enumerate(assigned_words, start=1):
             st.write(f"Contestant {i}: {word}")
     else:
         st.warning("Not enough words available to assign to all contestants.")
+
+# Display round history
+st.subheader("Round History")
+if selected_grade in st.session_state["round_history"]:
+    for round_number, words in st.session_state["round_history"][selected_grade].items():
+        st.write(f"Round {round_number}: {', '.join(words)}")
 
 # Progress to the next round
 if st.button("Next Round"):
@@ -125,9 +137,7 @@ if st.button("Next Round"):
 
 # Reset words, contestants, and rounds
 if st.button("Reset Game"):
-    st.session_state["used_words"] = {grade: [] for grade in word_lists.keys()}
-    st.session_state["contestants"] = {grade: [] for grade in word_lists.keys()}
-    st.session_state["round"] = {grade: 1 for grade in word_lists.keys()}
-    st.info("Game has been reset.")
+    st.session_state["used_words"] =
+
 
 
