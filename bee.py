@@ -83,14 +83,16 @@ word_lists = {
     ]
 }
 
-# Initialize state to track used words and contestants
+# Initialize state to track used words, contestants, and rounds
 if "used_words" not in st.session_state:
     st.session_state["used_words"] = {grade: [] for grade in word_lists.keys()}
 if "contestants" not in st.session_state:
     st.session_state["contestants"] = {grade: [] for grade in word_lists.keys()}
+if "round" not in st.session_state:
+    st.session_state["round"] = {grade: 1 for grade in word_lists.keys()}
 
 # Streamlit app title
-st.title("MDT Spelling Bee Word Picker")
+st.title("Spelling Bee Word Picker")
 
 # Select grade
 selected_grade = st.selectbox("Select Grade:", options=list(word_lists.keys()))
@@ -98,8 +100,8 @@ selected_grade = st.selectbox("Select Grade:", options=list(word_lists.keys()))
 # Input number of contestants
 num_contestants = st.number_input("Enter number of contestants for this grade:", min_value=1, step=1)
 
-# Assign words to contestants
-if st.button("Assign Words to Contestants"):
+# Assign words for the current round
+if st.button("Assign Words for Current Round"):
     available_words = [
         word for word in word_lists[selected_grade] 
         if word not in st.session_state["used_words"][selected_grade]
@@ -110,20 +112,20 @@ if st.button("Assign Words to Contestants"):
         st.session_state["used_words"][selected_grade].extend(assigned_words)
         st.session_state["contestants"][selected_grade] = assigned_words
 
-        st.success("Words assigned to contestants:")
+        st.success(f"Round {st.session_state['round'][selected_grade]} Words Assigned:")
         for i, word in enumerate(assigned_words, start=1):
             st.write(f"Contestant {i}: {word}")
     else:
         st.warning("Not enough words available to assign to all contestants.")
 
-# Reset words and contestants
-if st.button("Reset Words and Contestants"):
-    st.session_state["used_words"] = {grade: [] for grade in word_lists.keys()}
-    st.session_state["contestants"] = {grade: [] for grade in word_lists.keys()}
-    st.info("All words and contestants have been reset.")
+# Progress to the next round
+if st.button("Next Round"):
+    st.session_state["round"][selected_grade] += 1
+    st.info(f"Moved to Round {st.session_state['round'][selected_grade]}.")
 
-
-# Reset words button
-if st.button("Reset Words"):
+# Reset words, contestants, and rounds
+if st.button("Reset Game"):
     st.session_state["used_words"] = {grade: [] for grade in word_lists.keys()}
+    st.session_state["contestants"] = {grade: [] for grade in word_lists.keys()
+
     st.info("All word lists have been reset.")
