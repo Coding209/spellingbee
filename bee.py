@@ -93,9 +93,7 @@ if "round" not in st.session_state:
 if "round_history" not in st.session_state:
     st.session_state["round_history"] = {grade: {} for grade in word_lists.keys()}
 
-# Streamlit app title with logo
-st.image("/mnt/data/image.png", width=300)
-
+# Streamlit app title
 st.markdown("""<style>
 h1 {
     color: #2b6cb0;
@@ -164,6 +162,7 @@ if st.sidebar.button("Reset Game"):
         st.sidebar.success("Game has been reset.")
     else:
         st.sidebar.warning("Check 'Confirm reset' to reset the game.")
+
 
 
 
