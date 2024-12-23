@@ -98,7 +98,7 @@ st.markdown("""<style>
 h1 {
     color: #2b6cb0;
     font-family: 'Arial';
-    text-align: center;
+    text-align: left;
     margin-bottom: 20px;
 }
 </style>
@@ -107,7 +107,7 @@ h1 {
 
 # Add an app description
 st.markdown("""
-<div style="text-align: center; font-family: Arial; font-size: 16px; margin-bottom: 30px;">
+<div style="font-family: Arial; font-size: 16px; margin-bottom: 30px;">
     Welcome to the Spelling Bee Word Picker! This app helps you organize and run a spelling bee with ease.<br>
     Choose a grade, add contestants, and pick words for each round.
 </div>
